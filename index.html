@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sharath | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>html { scroll-behavior: smooth; }</style>
+</head>
+<body>
+
+  <!-- Falling Stars -->
+  <canvas id="star-canvas"></canvas>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo">Sharath</a>
+      <ul class="navbar-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </div>
+  
+  </div>
+
+  <!-- Home -->
+  <section id="home" class="section home-section show">
+    <div class="home-content">
+      <img src="profile.png" alt="Profile" class="profile-img" />
+      <div>
+        <h1>Hello, I'm Sharath</h1>
+        <p>Web Developer focused on frontend magic & user experience. Let's create something amazing!</p>
+        <a href="resume.html" class="view-button">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section show">
+    <h2 style="color: black;">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>FNC</h3>
+        <p>Appointment Booking App</p>
+        <a href="project.html" class="view-button">View</a>
+      </div>
+      <div class="project-card">
+        <h3>E-Commerce</h3>
+        <p>Mini-Project</p>
+        <a href="project.html" class="view-button">View</a>
+      </div>
+      <div class="project-card">
+        <h3>Ripness Detection</h3>
+        <p>Major-Project</p>
+        <a href="project.html" class="view-button">View</a>
+      </div>
+      <!-- Add more project cards -->
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section show">
+    <h2>About Me</h2>
+    <img src="profile.png" alt="Sharath" class="about-img" />
+    <p>3rd-year AI & ML student at VTU. Passionate about frontend, design, and building immersive digital products.</p>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="section show">
+    <h2 style="color: black;">Blog</h2>
+    <p style="color:black;"> Welcome to my blog! Here, I share my thoughts on web development, the latest trends in technology, 
+        and the challenges I face while building projects. Stay tuned for insights on coding, design, and 
+        everything that excites me in the tech world.</p>
+    <a href="blog.html" class="view-button">View</a>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Sharath. All rights reserved.</p>
+    <div class="socials">
+      <a href="https://github.com/sharathbedrodi2004" target="_blank"><i class="fab fa-github"></i> Github</a>
+      <a href="https://www.instagram.com/sharathbedrodi?igsh=MXFmYzJ5ZnN4b3F5NA==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+      <a href="https://www.linkedin.com/in/sharath-b-0b450b358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </footer>
+
+  <!-- JS for Animation -->
+  <script>
+    const canvas = document.getElementById("star-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const stars = Array.from({length: 100}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.5,
+      speed: Math.random() * 1 + 0.5,
+    }));
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fillStyle = "#fff";
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = "#fff";
+        ctx.fill();
+        star.y += star.speed;
+        star.x += star.speed * 0.2;
+        if (star.y > canvas.height || star.x > canvas.width) {
+          star.x = Math.random() * canvas.width;
+          star.y = 0;
+        }
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
+</body>
+</html>
